@@ -10,7 +10,6 @@ ul, ol {
 }
 
 a {
-  text-decoration: none;
   color: currentColor;
 }
 
@@ -189,4 +188,41 @@ button[type="submit"]:disabled {
   background-color: #a0cde4;
   cursor: not-allowed;
   opacity: 0.7;
+}
+
+/* DETTAGLIO TASK  */
+
+.task-details {
+  background: #ffffff;                /* Sfondo bianco */
+  border-radius: 1rem;                /* Angoli arrotondati */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Ombra morbida */
+  padding: 1.5rem;
+  max-width: 400px;                   /* Larghezza massima */
+  margin: 1rem auto;                  /* Centra la card orizzontalmente */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333333;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.task-details:hover {
+  transform: translateY(-3px);        /* Effetto leggero al passaggio del mouse */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.task-details h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #007acc;                     /* Colore primario per il titolo */
+  border-bottom: 2px solid #007acc;   /* Riga decorativa sotto il titolo */
+  padding-bottom: 0.25rem;
+}
+
+.task-details p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+.task-details p strong {
+  color: #555555;
+  margin-right: 0.25rem;
 }

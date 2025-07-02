@@ -1,5 +1,7 @@
-const TaskRow = function({task}) {
+import { memo } from 'react';
 
+const TaskRow = memo(({task}) => {
+ 
     const statusClass = task.status.replace(" ","").toLowerCase();
 
     return (
@@ -10,6 +12,6 @@ const TaskRow = function({task}) {
         </tr>
     )
 
-}
+});
 
 export default TaskRow;

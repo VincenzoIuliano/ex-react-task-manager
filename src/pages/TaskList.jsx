@@ -1,8 +1,13 @@
+import { useContext } from "react";
+import { GlobalContext } from "../context/GlobalContext";
+
 export default function TaskList() {
+    
+    const { tasks } = useContext(GlobalContext);
+  
     return (
-        <div>
-        <h1>Task List</h1>
-        {/* Task list content will go here */}
-        </div>
+        <div className="task-list">
+           Lista Task
+        </div>    
     );
 }

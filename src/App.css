@@ -226,3 +226,92 @@ button[type="submit"]:disabled {
   color: #555555;
   margin-right: 0.25rem;
 }
+
+/* MODALE  */
+
+/* Sfondo scuro semitrasparente che copre tutto lo schermo */
+.modal-overlay {
+  position: fixed;             /* Fissa l'overlay rispetto alla finestra */
+  top: 0;
+  left: 0;
+  width: 100vw;                /* Copre tutta la larghezza */
+  height: 100vh;               /* Copre tutta l'altezza */
+  background-color: rgba(0, 0, 0, 0.5); /* Trasparenza */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;               /* Sopra agli altri elementi */
+}
+
+/* Contenitore principale della modale */
+.modal {
+  background: #fff;
+  border-radius: 0.75rem;
+  padding: 2rem;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  animation: fadeInUp 0.3s ease;
+}
+
+/* Titolo della modale */
+.modal h2 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+/* Testo della modale */
+.modal p {
+  margin: 1rem 0;
+  color: #555;
+}
+
+/* Contenitore dei pulsanti */
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+/* Stile base dei pulsanti */
+.modal-buttons button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+/* Stile specifico per il pulsante "Annulla" */
+.modal-buttons button:first-child {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.modal-buttons button:first-child:hover {
+  background-color: #d5d5d5;
+}
+
+/* Stile specifico per il pulsante "Conferma" */
+.modal-buttons button:last-child {
+  background-color: #007acc;
+  color: #fff;
+}
+
+.modal-buttons button:last-child:hover {
+  background-color: #006bb3;
+}
+
+/* Animazione in entrata */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

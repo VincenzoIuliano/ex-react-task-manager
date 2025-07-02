@@ -2,12 +2,27 @@ import { useContext, useMemo, useState } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import TaskRow from "../components/TaskRow";
 
+// funzione di debounce 
+
+function debounce(func, delay) {
+    let timer;
+    return (value) => {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            func(value);
+        }, delay);
+    }
+}
+
 export default function TaskList() {
     
     const { tasks } = useContext(GlobalContext);
 
     const [sortBy, setSortBy] = useState("title");
     const [sortOrder, setSortOrder] = useState(1);
+
+    const [searchQuery, setSearchQuery] = useState("");
+    const debouncedSearch = useMemo(() => debounce(setSearchQuery, 500), []);
 
     const sortIcons = sortOrder === 1 ? "↑" : "↓";
     
@@ -20,8 +35,10 @@ export default function TaskList() {
         }
     }
 
-    const sortedTasks = useMemo(() => {
-        return [...tasks].sort((a, b) => {
+    const filteredAndSortedTasks = useMemo(() => {
+        return [...tasks]
+        .filter(task => task.title.toLowerCase().includes(searchQuery.toLowerCase()))
+        .sort((a, b) => {
             let comparison = 0;
             if (sortBy === "title") {
                 comparison = a.title.localeCompare(b.title);
@@ -33,9 +50,15 @@ export default function TaskList() {
             }
             return comparison * sortOrder;
         });
-    }, [tasks, sortBy, sortOrder]);
+    }, [tasks, sortBy, sortOrder, searchQuery]);
 
     return (
+    <div>
+        <input 
+            type="text"
+            placeholder="Cerca un task"
+            onChange={e => debouncedSearch(e.target.value)}
+        />
         <table>
             <thead>
                 <tr>
@@ -54,10 +77,11 @@ export default function TaskList() {
                 </tr>
             </thead>
             <tbody>
-                {sortedTasks.map((task) => (
+                {filteredAndSortedTasks.map((task) => (
                     <TaskRow key={task.id} task={task} />
                 ))}
             </tbody>
         </table>    
+    </div>
     );
 }
